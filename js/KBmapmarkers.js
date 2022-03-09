@@ -65,7 +65,7 @@ function KBMap(name){
 
 			if (mapMarker != "removeElement") {
 
-				this.mapMarkers[mapMarker].show();
+				this.mapMarkers[mapMarker].show(++count);
 	
 			};
 
@@ -112,8 +112,8 @@ function MapMarker(name, icon, cordX, cordY, map){
 		jQuery('[data-marker-name="'+ this.name +'"]').css('z-index', "1");
 	}
 
-	this.generateMarker = function(){
-		output = '<div class="KBmap__marker" data-marker-name="'+this.name+'" style="left: '+this.cordX+'%; top: '+this.cordY+'%"><img src="'+this.icon+'" alt="'+this.location+'"></div>'
+	this.generateMarker = function(i){
+		output = '<div class="KBmap__marker" data-marker-name="'+this.name+'" style="left: '+this.cordX+'%; top: '+this.cordY+'%"><img src="'+this.icon+'" alt="'+this.location+'"><span class="marker-number">'+ i +'</span></div>'
 
 		return output;
 	}
@@ -127,9 +127,9 @@ function MapMarker(name, icon, cordX, cordY, map){
 		this.map.openedModals.removeElement(this.modal);
 	}
 
-	this.show = function(){
+	this.show = function(i){
 
-		this.markerContainer.append(this.generateMarker());
+		this.markerContainer.append(this.generateMarker(i));
 
 	}
 
